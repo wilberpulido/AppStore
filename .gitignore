@@ -3,15 +3,12 @@
 # dependencies
 node_modules
 server/node_modules
-client/node_modules
-client/.pnp
+app-store/node_modules
+app-store/.pnp
 .pnp.js
 
-# testing
-client/coverage
-
 # production
-client/build
+app-store/build
 
 # misc
 .DS_Store
