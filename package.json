@@ -1,0 +1,26 @@
+{
+  "name": "app-store",
+  "version": "1.0.0",
+  "description": "client and server",
+  "scripts": {
+    "iclient": "cd app-store && npm install",
+    "iserver": "cd server && npm install",
+    "start": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server/ && npm run start",
+    "client": "node start-client.js",
+    "test:client": "cd app-store && npm run test",
+    "test:server": "cd server && npm run test"
+  },
+  "devDependencies": {
+    "concurrently": "^5.3.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "wilberpulido"
+  },
+  "keywords": [
+    "appstore"
+  ],
+  "author": "Wilber Pulido",
+  "license": "ISC"
+}
