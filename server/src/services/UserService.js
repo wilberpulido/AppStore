@@ -1,9 +1,7 @@
 const mysql = require('mysql');
 const bcrypt = require('bcrypt');
-// const { async } = require('regenerator-runtime');
 
 class UserService {
-    user;
 
     createUser(db,user){
 
@@ -12,7 +10,6 @@ class UserService {
             if (!user.user_name || !user.password || !user.first_name || !user.last_name || !user.email || !user.developer){
                 resolve(false);
             }
-
 
             let sqlSelectUser = 'SELECT * FROM users WHERE user_name=?';
             let sqlSelectEmail = 'SELECT * FROM users WHERE email = ?';
@@ -72,7 +69,5 @@ class UserService {
     }
 
 }
-
-
 
   module.exports = new UserService;

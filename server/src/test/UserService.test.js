@@ -1,5 +1,4 @@
-// import { response } from 'express';
-// import { async } from 'regenerator-runtime';
+
 import {dbTest, connection} from './dbTest';
 
 const mysql = require('mysql');

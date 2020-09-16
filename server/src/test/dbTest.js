@@ -1,5 +1,4 @@
 const mysql = require('mysql');
-// const { async } = require('regenerator-runtime');
 
     // Create connection
     let db = mysql.createConnection({
