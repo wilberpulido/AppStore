@@ -1,0 +1,20 @@
+.elementForm{
+  display:flex;
+  flex-direction: column;
+}
+.elementForm label{
+  margin-bottom: 5px;
+}
+.elementSelecType{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 20px;
+  margin-top: 15px;
+  
+}
+.elementSelecType label{
+  font-size: 1.2em;
+  font-weight: 400;
+  margin-right: 30px;
+  margin-left: 20px;
+}

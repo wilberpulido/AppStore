@@ -1,0 +1,16 @@
+.inputTag{
+  background-color: orange;
+  border: none;
+  border-bottom: 2px solid red;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  height: 25px;
+}
+
+.inputTag:focus{
+  outline: none;
+  border-bottom: 2px solid red;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+
+}

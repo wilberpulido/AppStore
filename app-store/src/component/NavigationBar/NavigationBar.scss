@@ -1,0 +1,31 @@
+.styleInput input{
+  width: '800px';
+  height: '20px';
+  border-bottom: '2px solid #e74c3c';
+}
+
+#search{
+  width: 800px;
+  height: 30px;
+  padding-left:10px;
+  background-color: orangered;
+  color: black;
+  font-size: 20px;
+  border: none;
+  color: orange;
+}
+#search::placeholder{
+  font-size: 20px;
+  color: orange;
+}
+#search:focus{
+  border-bottom:4px solid crimson;
+  outline: none;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus{
+  -webkit-text-fill-color: orange;
+  box-shadow: 0 0 0px 1000px orangered inset;
+}

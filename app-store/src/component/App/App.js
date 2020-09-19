@@ -1,16 +1,20 @@
 import React from 'react';
-import NavigationBar from '../NavigationBar/NavigationBar'
+import {BrowserRouter,Route,Switch} from 'react-router-dom';
+import HomePage from '../HomePage/HomePage';
+import Login from '../Login/Login';
+import SignUp from '../Register/Register'
 import './App.css';
 
-class App extends React.Component {
-  render(){
-    return <div>
-      <header>
-        <NavigationBar/>
-      </header>
-      holas
-    </div>
-  }
+function App(){
+return (
+  <BrowserRouter>
+    <Switch>
+      <Route path="/signup" component={SignUp}/>
+      <Route path="/login" component={Login}/>
+      <Route path="/" component={HomePage}/>
+    </Switch>
+  </BrowserRouter>
+  )
 }
 
 export default App;

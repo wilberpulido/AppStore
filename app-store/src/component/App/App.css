@@ -1,4 +1,18 @@
-header{
+*{
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+  }
+body{
+  background-color: rgba(243,155,18, 0.3);
+}
+
+nav{
   display: flex;
   justify-content: center;
+  background-color: orange;
+}
+main{
+  display:flex;
+  justify-content:center;
 }
