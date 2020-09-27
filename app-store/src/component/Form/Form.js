@@ -5,13 +5,13 @@ function Form(props){
   const styleForm = {
     backgroundColor: "orange",
     borderRadius: "10px",
-    width: "400px",
+    width: "500px",
     height: "auto",
     padding: "20px 30px",
   }
 
   return(
-    <form style={styleForm} id={props.id}>
+    <form style={styleForm} id={props.id} onSubmit={props.onSubmit}>
       {props.children}
     </form>
   )

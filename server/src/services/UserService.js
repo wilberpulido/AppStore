@@ -4,11 +4,12 @@ const bcrypt = require('bcrypt');
 class UserService {
 
     createUser(db,user){
+        console.log('Posta:',user);
 
         let userPromise = new Promise((resolve,reject)=>{
 
-            if (!user.user_name || !user.password || !user.first_name || !user.last_name || !user.email || !user.developer){
-                resolve(false);
+            if (!user.user_name || !user.password || !user.first_name || !user.last_name || !user.email || typeof user.developer !== 'boolean'){
+                return resolve(false);
             }
 
             let sqlSelectUser = 'SELECT * FROM users WHERE user_name=?';
@@ -54,9 +55,46 @@ class UserService {
                 return userPromise;
     }
 
-    selectUser(db,user){
-        return true;
+    selectUserForUserName(db,user){
+        console.log(user);
+
+        const select = "SELECT * FROM users WHERE user_name=?";
+
+        let userPromise = new Promise((resolve,reject)=>{
+
+        db.query(select,user.user_name,(err,result)=>{
+            if (err) {
+                return reject(err);
+            }
+            if (typeof result[0] !== "undefined") {
+                return resolve(true);
+            } else{
+                return resolve(false);
+            }
+        })
+        })
+        return userPromise;
     }
+    selectUserForEmail(db,user){
+
+        const select = "SELECT * FROM users WHERE email=?";
+
+        let userPromise = new Promise((resolve,reject)=>{
+
+        db.query(select,user.email,(err,result)=>{
+            if (err) {
+                return reject(err);
+            }
+            if (typeof result[0] !== "undefined") {
+                return resolve(true);
+            } else{
+                return resolve(false);
+            }
+        })
+        })
+        return userPromise;
+    }
+
     updateUser(db,user){
         return true;
     }

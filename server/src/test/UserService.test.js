@@ -103,15 +103,47 @@ describe('Services for user tasks', () => {
         })
       }).then(res=>{return res});
 
-      expect(result).not.toMatch(/password/);
+      await expect(result).not.toMatch(/password/);
+
+    });
+  });
+
+  describe('test for selectUserForUserName', () => {
+
+    beforeAll(async()=>{
+      await new Promise((resolve)=>{
+        dbTest.query('INSERT INTO users SET?', newUser ,(err,result)=>{
+          resolve(result);
+        });
+      });
+    });
+    afterAll(async()=>{
+      await new Promise((resolve)=>{
+        dbTest.query('DELETE FROM users WHERE user_name = "WilberPulido"',(err,result)=>{
+          resolve(result);
+        });
+      });
+    });
+
+    test('the user exists by username in the database', async()=>{
+
+      let result = UserService.selectUserForUserName(dbTest,newUser);
+      await expect(result).resolves.toBeTruthy();
 
     });
 
+    test('there is NO user by username in the database', async()=>{
+      newUser.user_name = "OtherUser";
 
+      let result = UserService.selectUserForUserName(dbTest,newUser);
+      await expect(result).resolves.toBeFalsy();
 
-
-
+      newUser.user_name = "WilberPulido";
 
     });
+    
+
 
   })
+
+})

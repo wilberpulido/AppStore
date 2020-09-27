@@ -6,10 +6,6 @@ const app = express();
 
 //body parser middleware
 
-//Nota importante! el segmento de codigo app.post, sera reescrito y dividido en servicioUser, controlado y router.
-//Solo los servicios tendran acceso a la base de datos, estos seran usados dentre de los controladores y estos ultimos 
-//seran definidos dentro de los routers segun corresponda.
-
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 

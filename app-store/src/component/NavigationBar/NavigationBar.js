@@ -34,7 +34,7 @@ function NavigationBar(){
       </Link>
     </li>
     <li>
-        <input id = 'search' placeholder='Search'/>
+        <input id = 'search' type="search" placeholder='Search'/>
     </li>
     <li>
         <Button path="/Login">
