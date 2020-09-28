@@ -1,12 +1,17 @@
 import React, {useState,useEffect} from 'react';
 import './Register.scss';
-import NavigationBar from '../NavigationBar/NavigationBar'
-import Form from '../Form/Form';
-import LabelTag from '../LabelTag/LabelTag';
-import InputTag from '../InputTag/InputTag';
-import ButtonSubmit from "../ButtonSubmit/ButtonSubmit";
+import NavigationBar from '../../NavigationBar/NavigationBar'
+import Form from '../../Form/Form';
+import LabelTag from '../../LabelTag/LabelTag';
+import InputTag from '../../InputTag/InputTag';
+import ButtonSubmit from "../../ButtonSubmit/ButtonSubmit";
 
-function SignUp(props){
+function Register(props){
+
+  const styleMain = {
+    display:"flex",
+    justifyContent:"center",
+  }
 
   const styleSection = {
     marginTop: "50px",
@@ -59,6 +64,7 @@ function SignUp(props){
   const [password,setPassword] = useState("");
   const [repeatPassword,setRepeatPassword] = useState("");
   const [error,setError] = useState("");
+  const {history} = props;
 
 
   async function handlerSubmit(e){
@@ -68,10 +74,18 @@ function SignUp(props){
     fetch('/register/user',{
       method:'POST',
       body: JSON.stringify({user}),
-      headers: {'Content-Type': 'application/json'}
+      headers: {
+        'Content-Type': 'application/json',
+        "accept": "application/json"
+      }
     })
-    .then(res=> console.log(res))
-    // .then(response=> console.log(response));
+    .then(res=> res.json())
+    .then(response=> {
+      if (!response) {
+        return alert("The user has not been created, check the data provided");
+      }
+      history.push('/');
+    })
   }
 
   function ComparePassword(password,repeatPassword){
@@ -125,16 +139,16 @@ function SignUp(props){
     .then(response => {
       if(response){
           input.style.borderTop = "2px solid red";
-        return  setUser({...user, user_name:""});
+        return   setUser(prevUser=>{return { ...prevUser, user_name:""}});
         
       } else{
         if(input.value === ''){
             input.style.borderTop = "none";
-          return  setUser({...user, user_name:""});
+          return   setUser(prevUser=>{return { ...prevUser, user_name:""}});
 
         }
           input.style.borderTop = "2px solid green";
-        return  setUser({...user, user_name: input.value});
+        return  setUser(prevUser=>{return { ...prevUser, user_name: input.value}});
 
       }
     });
@@ -174,16 +188,15 @@ function SignUp(props){
       return setError('The password only allows numbers and letters');
 
     }else if(!ComparePassword(password,repeatPassword)){
-        setUser({...user,password:""});
+      setUser(prevUser=>{return { ...prevUser, password:""}});
       return setError('Passwords submitted do not match');
 
     }else if (!repeatPassword){
         setError("");
-      return setUser({...user,password:""});
+      return setUser(prevUser=>{return { ...prevUser, password:""}});
     }
     setError("");
-    return setUser({...user, password: password});
-
+    return  setUser(prevUser=>{return { ...prevUser, password: password}});
 
   },[password,repeatPassword]);
 
@@ -195,7 +208,7 @@ function SignUp(props){
         <NavigationBar/>
       </nav>
 
-      <main>
+      <main style={styleMain}>
         <section style={styleSection}>
 
           <Form id="registrationForm" onSubmit={handlerSubmit}>
@@ -229,12 +242,14 @@ function SignUp(props){
 
             <div className="elementForm">
               <LabelTag htmlFor="password">New Password</LabelTag>
-              <InputTag id = "password" name="password" type="password" onChange={e=>setPassword(e.target.value)}/>
+              <InputTag id = "password" name="password" type="password"
+                onChange={e=>setPassword(e.target.value)}/>
             </div>
 
             <div className="elementForm">
               <LabelTag htmlFor="repeatPassword">Repeat Password</LabelTag>
-              <InputTag id = "repeatPassword" name="repeat_password" type="password" onChange={e=> setRepeatPassword(e.target.value)}/>
+              <InputTag id = "repeatPassword" name="repeat_password" type="password"
+                onChange={e=> setRepeatPassword(e.target.value)}/>
             </div>
             {/* //msg error */}
               <span style = {styleError}>{error}</span>
@@ -270,4 +285,4 @@ function SignUp(props){
   )
 }
 
-export default SignUp;
+export default Register;

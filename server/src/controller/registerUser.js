@@ -8,10 +8,10 @@ router.post('/user', async(req,res)=>{
     const result = await UserService.createUser(db,req.body.user);
 
     if (result) {
-        res.status(200).send("se creo usuario");
+        res.status(200).send(true);
 
     } else {
-        res.status(400).send("No se creo el usuario");
+        res.status(400).send(false);
 
     }
 });
@@ -19,18 +19,18 @@ router.post('/user', async(req,res)=>{
 router.post('/user_name', async(req,res)=>{
     const result = await UserService.selectUserForUserName(db,req.body);
     if(result){
-        res.status(400).send(true);
+        res.send(true);
     } else {
-        res.status(200).send(false);
+        res.send(false);
     }
 
 })
 router.post('/email', async(req,res)=>{
     const result = await UserService.selectUserForEmail(db,req.body);
     if(result){
-        res.status(400).send(true);
+        res.send(true);
     } else {
-        res.status(200).send(false);
+        res.send(false);
     }
 
 })
