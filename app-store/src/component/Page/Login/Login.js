@@ -4,6 +4,7 @@ import Form from '../../Form/Form';
 import {Link} from 'react-router-dom';
 import LabelTag from '../../LabelTag/LabelTag';
 import InputTag from '../../InputTag/InputTag';
+import ButtonSubmit from '../../ButtonSubmit/ButtonSubmit';
 
 function Login(){
   
@@ -17,7 +18,7 @@ function Login(){
   const styleForm = {
     display: "grid",
     gridTemplateColumns: "1fr 1fr",
-    gridTemplateRows: "100px 100px 50px",
+    gridTemplateRows: "70px 70px 70px 20px",
 
   }
   const styleLink = {
@@ -28,9 +29,21 @@ function Login(){
     gridColumnEnd: 3,
     display: "flex",
     alignItems: "center",
+    justifyContent: "flex-end",
+  }
+  const styleInput = {
+    display: "flex",
+    alignItems: "center",
     justifyContent: "center",
   }
-  const styleElement = {
+  const styleLabel = {
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end",
+  }
+  const styleButtonSubmit = {
+    gridColumnStart: 1,
+    gridColumnEnd: 3,
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
@@ -47,23 +60,27 @@ function Login(){
           <Form>
             <div style={styleForm}>
 
-              <div style={styleElement}>
+              <div style={styleLabel}>
                 <LabelTag>
                   Username or Email: 
                 </LabelTag>
               </div>
-              <div style={styleElement}>
+              <div style={styleInput}>
                 <InputTag/>
               </div>
 
-              <div style={styleElement}>
+              <div style={styleLabel}>
                 <LabelTag>
                   Password: 
                 </LabelTag>
               </div>
 
-              <div style={styleElement}>
+              <div style={styleInput}>
                 <InputTag/>
+              </div>
+
+              <div style={styleButtonSubmit}>
+                <ButtonSubmit> inicia sesion</ButtonSubmit>
               </div>
 
               <div style={styleLink}>
